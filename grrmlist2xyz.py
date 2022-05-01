@@ -55,7 +55,7 @@ def get_summary(lines, gidprefix=None):
                 gid = gidprefix + '-' + gid
             sym = l[7]
         elif 'Energy' in line:
-            l = line.strip('(').strip(')').split()
+            l = line.replace('(', '').replace(')', '').split()
             eng1 = l[3]
             eng2 = l[5]
         elif 'Spin' in line:

@@ -5,9 +5,13 @@ import csv
 
 
 def get_parser():
+    class customHelpFormatter(argparse.ArgumentDefaultsHelpFormatter,
+                              argparse.RawTextHelpFormatter):
+        pass
+
     parser = argparse.ArgumentParser(
+        formatter_class=customHelpFormatter,
         description="Convert GRRM list files to xyz and csv files.",
-        usage=f"python {os.path.basename(__file__)} LOGBASENAME --prefix PREFIX"
     )
     parser.add_argument(
         "logbasename",
@@ -17,7 +21,8 @@ def get_parser():
     parser.add_argument(
         "--prefix",
         help="Prefix of Geometry ID",
-        type=str
+        type=str,
+        default='GRRM'
     )
     return parser.parse_args()
 
